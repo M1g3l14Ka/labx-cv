@@ -75,6 +75,7 @@ export default function ContactPage() {
           </motion.div>
         )}
 
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Contact Info */}
           <motion.div
@@ -121,6 +122,8 @@ export default function ContactPage() {
               </div>
             </div>
           </motion.div>
+
+          <div className="absolute  left-[40%] -translate-y-1/2 w-full h-256 bg-orange-500/20 rounded-full blur-[120px] -z-10 pointer-events-none" />
 
           {/* Contact Form */}
           <motion.div
