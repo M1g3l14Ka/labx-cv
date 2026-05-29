@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🦊 Fullstack Лендинг-Резюме 
 
-## Getting Started
+Проект представляет собой SPA-лендинг, написанный с использованием современных подходов React 19 и Next.js 16.
 
-First, run the development server:
+## 🚀 Как запустить проект локально
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Склонируйте репозиторий:
+   \`git clone\`
+2. Установите зависимости:
+   \`npm install\`
+3. Создайте файл \`.env\` в корне проекта и добавьте следующие ключи:
+   \`\`\`env
+   EMAIL_USER="ваш_email@yandex.ru"
+   EMAIL_APP_PASSWORD="ваш_пароль_приложения_яндекс"
+   GEMINI_API_KEY="ваш_ключ_google_gemini"
+   \`\`\`
+4. Запустите сервер разработки:
+   \`npm run dev\`
+5. Откройте [http://localhost:3000](http://localhost:3000)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠 Какой стек использован и почему
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Core:** Next.js 16 + React 19. Выбран благодаря встроенным Server Actions, что позволяет реализовать API-часть без поднятия отдельного Express-сервера.
+- **Language:** TypeScript.
+- **Styling:** Tailwind CSS v4 + Framer Motion (для плавных микроинтеракций). SCSS интегрирован для кастомных стилей при необходимости.
+- **Backend/API:** Node.js, `nodemailer` (для отправки писем), `@google/generative-ai` (для интеграции с ИИ).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✉️ Как реализована форма
 
-## Learn More
+Реализован полный цикл (Frontend → API → Обработка ошибок → Результат):
+1. **Frontend:** Форма собирает данные (Имя, Телефон, Email, Комментарий) с локальной валидацией. При отправке кнопка блокируется (предотвращение двойных кликов).
+2. **API (Server Action):** Данные улетают в `sendContactForm.ts`, где работает Node.js + Nodemailer. 
+3. **Фича (Promise.all):** На сервере параллельно формируются два HTML-письма:
+   - Уведомление владельцу сайта со всеми данными.
+   - Красивое письмо-автоответчик пользователю (копия его сообщения).
+4. **Безопасность:** Использован SMTP-сервер Яндекса (порт 465) с "Паролем приложения", что гарантирует работу в РФ без VPN-ограничений (в отличие от Gmail SMTP).
 
-To learn more about Next.js, take a look at the following resources:
+## 🤖 Какие AI-инструменты использовались
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Gemini 3.5 Flash API:** Интегрирован прямо в сайт. На странице реализован компонент "AI-Ассистент", которому передан системный промпт с моим опытом. Пользователь может задать вопрос ИИ-агенту (например, "Какой у тебя стек?") и получить сгенерированный в реальном времени ответ.
+- **LLM (Gemini / ChatGPT):** Использовались в качестве "высокоточного станка ЧПУ" для генерации рутинных компонентов и помощи в написании boilerplate-кода.
+- **Leonardo.ai:** Использовался для генерации консистентных графических ассетов и иконок.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔧 Что пришлось исправлять вручную (Роль Архитектора)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+При использовании ИИ-генерации кода всегда требуется ручной контроль и рефакторинг:
+1. **Hydration Errors:** В React 19 атрибут `disabled={false}` на кнопках может вызывать ошибку гидратации между сервером и клиентом. Вручную исправлено на строгую логику `? true : undefined`.
+2. **Адаптив и Layout Shift:** ИИ часто ломает мобильный адаптив при использовании `absolute` элементов (свечение на фоне). Вручную переписаны CSS-сетки (Grid) и добавлены `overflow-x-hidden`, чтобы сайт не "плыл" на смартфонах.
+3. **Настройка SMTP под РФ:** Базовые скрипты ИИ для `nodemailer` предлагают порты Gmail (которые отваливаются по `ETIMEDOUT` без VPN). Конфигурация переписана под локальные реалии.

@@ -1,0 +1,64 @@
+'use client'
+
+import { useState } from "react"
+import Link from "next/link"
+import { motion } from "framer-motion"
+import { ArrowLeft, Bug, Terminal } from "lucide-react"
+
+const funnyErrors = [
+    { code: "404", title: "Not Found", message: "Я попытался найти эту страницу, но нашел лишь ошибку :(. Похоже, я сегодня только frontend разработчик." },
+    { code: "500", title: "Server Error", message: "console.log('It works on my machine!') ...но не здесь." },
+    { code: "403", title: "Forbidden", message: "403: Доступ запрещен. Даже я не могу попасть туда. А ведь я это создал.." },
+]
+
+export default function NotFoundPage() {
+    const [randomError] = useState(() => funnyErrors[Math.floor(Math.random() * funnyErrors.length)])
+
+    return (
+        <div className="min-h-screen flex flex-col items-center justify-center px-6">
+            <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-center max-w-2xl"
+            >
+                <motion.div
+                    animate={{ rotate: [0, -10, 10, -10, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                    className="text-8xl mb-8"
+                >
+                    <Bug className="w-24 h-24 mx-auto text-purple-500" />
+                </motion.div>
+
+                <div className="font-mono text-9xl font-bold text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-rose-600 mb-4">
+                    {randomError.code}
+                </div>
+
+                <h2 className="font-mono text-2xl text-white mb-2">{randomError.title}</h2>
+
+                <p className="text-gray-400 text-lg mb-8 font-mono">
+                    {randomError.message}
+                </p>
+
+                <div className="bg-black/50 border border-white/10 rounded-xl p-4 mb-8 text-left font-mono text-sm">
+                    <div className="flex items-center gap-2 mb-3">
+                        <Terminal className="w-4 h-4 text-purple-500" />
+                        <span className="text-gray-500">terminal</span>
+                    </div>
+                    <code className="text-green-400">
+                        $ git checkout main<br />
+                        <span className="text-red-400">error: путь не найден 🤔</span><br />
+                        <span className="text-yellow-400">hint: попробуй мернуться назад, может чего поменялось :?</span>
+                    </code>
+                </div>
+
+                <Link
+                    href="/"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-orange-400 to-rose-600 rounded-xl font-mono text-white hover:scale-105 transition-transform"
+                >
+                    <ArrowLeft className="w-5 h-5" />
+                    Back to Home
+                </Link>
+            </motion.div>
+        </div>
+    )
+}
