@@ -10,7 +10,7 @@
    \`npm install\`
 3. Создайте файл \`.env\` в корне проекта и добавьте следующие ключи:
    \`\`\`env
-   EMAIL_USER="ваш_email@yandex.ru"
+   EMAIL_USER="ваш_email@yandex.ru" / "ваш_email@gmail.com"
    EMAIL_APP_PASSWORD="ваш_пароль_приложения_яндекс"
    GEMINI_API_KEY="ваш_ключ_google_gemini"
    \`\`\`
