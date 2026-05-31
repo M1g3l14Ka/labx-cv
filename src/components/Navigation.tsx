@@ -11,7 +11,7 @@ export default function Navigation() {
             transition={{ duration: 0.7 }}
             className="sticky top-0 z-10 w-full bg-black/40 flex justify-center items-center "
         >
-            <div className="flex justify-around items-center text-white w-4xl p-3 text-2xl font-mono font-bold ">
+            <div className="flex justify-around items-center text-white w-4xl p-3 text-lg font-mono font-bold ">
                 <div className="hover:text-transparent hover:bg-clip-text hover:bg-linear-120 from-orange-400 to-rose-600">
                     <Link href="#start" className="p-1 rounded-2xl hover:scale-95">
                         <span className="hover:text-transparent hover:bg-clip-text hover:bg-linear-120 from-orange-400 to-rose-600">Старт</span>
