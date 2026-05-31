@@ -123,7 +123,7 @@ export default function ContactPage() {
             </div>
           </motion.div>
 
-          <div className="absolute  left-[40%] -translate-y-1/2 w-full h-256 bg-orange-500/20 rounded-full blur-[120px] -z-10 pointer-events-none" />
+          <div className="absolute  left-[40%] -translate-y-1/2 w-5xl h-256 bg-orange-500/20 rounded-full blur-[120px] -z-10 pointer-events-none" />
 
           {/* Contact Form */}
           <motion.div
