@@ -31,7 +31,7 @@ export default function RootLayout({
       lang="ru"
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
-      <body className="min-h-full flex flex-col bg-[#050505]">
+      <body className="min-h-full flex flex-col bg-[#050505] overflow-x-hidden max-w-[100vw]">
         
         <Navigation/>
         {children}
