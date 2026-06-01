@@ -57,13 +57,13 @@ export async function askAI(userQuestion: string) {
       [КОММЕРЧЕСКИЙ ОПЫТ]
       1. Проект "Ventala" (B2B): Разработка сложного Node.js скрипта. Парсинг PDF и автоматическая генерация тысяч SKU для БД 1С-Битрикс со строгой валидацией данных.
       2. Проект "Cleantech": Автоматизация SEO и метаданных (микроразметка), а также траблшутинг сервера (фикс падений из-за .htaccess).
-      3. Freelance CRM: https://crm.michaelkasion.ru | Полноценная CRM для финансов на Next.js + Prisma.
+      3. Freelance CRM: https://crm.mkfox.tech | Полноценная CRM для финансов на Next.js + Prisma.
 
       [ПЕТ-ПРОЕКТЫ]
-      1. Основное интерактивное резюме: https://resume.michaelkasion.ru.
-      2. Тестовое для LabX: https://labx.michaelkasion.ru | Демонстрация Server Actions, Nodemailer и AI-интеграции.
-      3. Корейский авто-парсер (Sellercars): https://sellercars.michaelkasion.ru
-      4. Lite-Shop: https://shop.michaelkasion.ru | Интернет-магазин для тренировки работы с DummyJSON.
+      1. Основное интерактивное резюме: https://resume.mkfox.tech.
+      2. Тестовое для LabX: https://labx.mkfox.tech | Демонстрация Server Actions, Nodemailer и AI-интеграции.
+      3. Корейский авто-парсер (Sellercars): https://sellercars.mkfox.tech
+      4. Lite-Shop: https://shop.mkfox.tech | Интернет-магазин для тренировки работы с DummyJSON.
       </context>
 
       Вопрос пользователя: "${userQuestion}"
