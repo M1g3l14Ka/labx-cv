@@ -34,7 +34,7 @@ function ProjectCard({ project }: { project: ITimelineItem }) {
     return (
         <div
             ref={ref}
-            className={`bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden transition-all duration-500 ease-out ${
+            className={`group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden transition-all duration-500 ease-out ${
                 project.isInProgress
                     ? 'opacity-60 grayscale hover:opacity-75 hover:grayscale-50'
                     : isVisible
@@ -42,13 +42,13 @@ function ProjectCard({ project }: { project: ITimelineItem }) {
                         : 'opacity-0 translate-y-4'
             } ${!project.isInProgress ? 'hover:border-purple-500/30' : ''}`}
         >
-            <div className="relative h-48 bg-white/5">
+            <div className="relative h-48 bg-white/5 overflow-hidden">
                 {project.img && project.img !== '/' ? (
                     <Image
                         src={project.img}
                         alt={project.title}
                         fill
-                        className="object-cover"
+                        className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
                         loading="lazy"
                     />
                 ) : (
@@ -125,15 +125,12 @@ export default function HomePage({ projects }: HomePageProps) {
         <div className="relative w-full max-w-7xl mx-auto px-6 py-16">
             <div className="absolute top-1/2 right-[40%] -translate-y-1/2 w-full h-256 bg-orange-500/20 rounded-full blur-[120px] -z-10 pointer-events-none" />
 
-            {/* Заголовок */}
             <div className="mb-10 text-center md:text-left">
                 <h2 className="text-4xl md:text-5xl font-mono text-white flex justify-center items-center w-full">
                     <span className="text-purple-500">#</span> Кейсы
                 </h2>
             </div>
 
-            {/* адаптивная сетка */}
-            {/* 1 колонка на мобилках, 2 на планшетах, 3 на больших экранах */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {projects.map((project) => (
                     <ProjectCard key={project.id} project={project} />
@@ -142,7 +139,5 @@ export default function HomePage({ projects }: HomePageProps) {
 
         </div>
 
-        
     )
 }
-
